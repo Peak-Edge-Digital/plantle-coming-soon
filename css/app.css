@@ -361,7 +361,7 @@ input[type=submit].full, .button {
   color: #EFEEE6;
   text-decoration: none;
   padding: 0.5em 2em;
-  font-size: 1.5em;
+  font-size: 1em;
   font-weight: 300;
   border-radius: 35px;
   vertical-align: middle;
@@ -453,7 +453,7 @@ input.disabled[type=submit]:hover, .disabled.button.outlined:hover {
 .close-button {
   display: inline-block;
   border: none;
-  background: url("/img/close-button.svg") no-repeat center center;
+  background: url("img/close-button.svg") no-repeat center center;
   cursor: pointer;
   width: 1.5em;
   height: 1.5em;
@@ -485,14 +485,7 @@ input[type=text]:active, input[type=text]:focus, input[type=email]:active, input
 input[type=text].error, input[type=email].error, input[type=password].error {
   border-color: #910d29;
 }
-input[type=text].error:after, input[type=email].error:after, input[type=password].error:after {
-  content: "";
-  display: block;
-  width: 1em;
-  height: 1em;
-  position: absolute;
-  background: url("/img/exclamation-icon.svg") no-repeat;
-}
+
 
 label {
   font-size: 1.4em;
@@ -1689,12 +1682,12 @@ main {
   color: #010101;
   margin-bottom: 0.5em;
 }
-#p503 img {
+#p503 main img {
   width: 180px;
   margin-bottom: 1em;
 }
 @media (min-width: 1024px) {
-  #p503 img {
+  #p503 main img {
     width: 300px;
   }
 }
@@ -1723,3 +1716,10 @@ main {
 }
 
 /*# sourceMappingURL=app.css.map */
+.animate-fade-in {
+  animation: fadeIn 0.5s backwards;
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to {}
+}

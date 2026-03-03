@@ -25,6 +25,57 @@
     <link rel="stylesheet" href="css/app.css">
 
     <script src="/js/browser-window-adjust.min.js"></script>
+    <script type="application/javascript">
+        document.addEventListener("DOMContentLoaded", function() {
+            const modalOpenButtons = document.querySelectorAll('.modal-open-button');
+            const modalCloseButtons = document.querySelectorAll('.modal .close-button');
+            const overlay = document.getElementById('overlay');
+            let modalOpen = null;
+
+            // Setup opening modals
+            modalOpenButtons.forEach((button) => {
+                button.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    let modal = document.getElementById(button.getAttribute('data-modal'));
+                    showModal(modal);
+                });
+            });
+
+            // Setup closing modals
+            modalCloseButtons.forEach((button) => {
+                button.addEventListener('click', () => {
+                    let modal = button.closest('.modal');
+                    if (modal) {
+                        hideModal(modal);
+                    }
+                });
+            });
+
+            function showModal(modal) {
+                showOverlay();
+                modal.classList.remove('hide');
+                modal.classList.add('animate-fade-in');
+                modalOpen = modal;
+            }
+
+            function hideModal(modal) {
+                modal.classList.add('hide');
+                modal.classList.remove('animate-fade-in');
+                hideOverlay();
+                modalOpen = null;
+            }
+
+            function showOverlay() {
+                overlay.classList.remove('hide');
+                overlay.classList.add('animate-fade-in');
+            }
+
+            function hideOverlay() {
+                overlay.classList.add('hide');
+                overlay.classList.remove('animate-fade-in');
+            }
+        });
+    </script>
 
     <!-- Privacy-friendly analytics by Plausible -->
     <script async src="https://plausible.io/js/pa-vct0uaX5U_0adN_umWzMq.js"></script>
@@ -81,11 +132,29 @@
         <img src="img/potting-shed.png" alt="a picture of a potting shed with a bench full of plants inside">
         <h1>Coming March 15th</h1>
         <p>We are currently busy in the potting shed getting things ready.<br>Please come back later to see the fruits of our labour.</p>
+        <a href="#" id="about-button" class="button modal-open-button" data-modal="how-to-play">How it will work</a>
     </main>
 
     <footer>
         <small>&copy; Copyright 2026 <a href="https://www.peakedge.digital" target="_blank">Peak Edge Digital</a> </small>
-</footer>
+    </footer>
+
+    <aside id="how-to-play" class="modal hide">
+        <header>
+            <h2>How it will work</h2>
+            <button class="close-button"></button>
+        </header>
+        <h3>The rules</h3>
+        <p>Each day you will be shown a new plant and you will have <b>three attempts</b> at identifying it.</p>
+        <img src="img/about/counter-example.webp" alt="">
+        <p>You will be given a multiple choice of answers, but only one is correct.</p>
+        <p>For every incorrect answer more of the plant will be shown to help you identify it.</p>
+        <img src="img/about/zoom-example.gif" alt="">
+        <h3>Statistics</h3>
+        <p>Keep track of how well you answered with stats on how many attempts it has taken you for each play and try to keep your daily streak of correct answers intact!</p>
+        <img src="img/about/streak-example.gif" alt="">
+    </aside>
+    <div id="overlay" class="hide"></div>
 </div>
 </body>
 </html>
